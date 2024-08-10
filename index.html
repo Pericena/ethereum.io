@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+    <title>Bitcoinsapp</title>
+
+    <!--
+    - favicon
+  -->
+    <link
+      rel="shortcut icon"
+      href="./assets/images/logo/logo.png"
+      type="image/x-icon"
+    />
+
+    <!--
+    - custom css link
+  -->
+    <link rel="stylesheet" href="./assets/css/style-prefix.css" />
+    <!-- <link rel="stylesheet" href="./assets/css/css.css" /> -->
+    <link rel="stylesheet" href="./assets/css/style2.css" />
+    <!--
+    - google font link
+  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <style>
+    .carousel {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    .cards-container {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .card-c {
+      flex: 0 0 300px;
+      height: 100%;
+      margin-right: 10px;
+      border: 2px solid #e2e2e296;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      padding: 1%;
+      border-radius: 25px;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 1;
+    }
+
+    .prev-btn {
+      left: 10px;
+    }
+
+    .next-btn {
+      right: 10px;
+    }
+  </style>
+
+  <style>
+    .slider-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .slider {
+      position: relative;
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .slides a {
+      min-width: 100%;
+      transition: opacity 0.5s;
+    }
+
+    .slides img {
+      width: 100%;
+      display: block;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0);
+      color: rgb(252, 3, 3);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 50%;
+      z-index: 10;
+    }
+
+    .prev {
+      left: 10px;
+    }
+
+    .next {
+      right: 10px;
+    }
+
+    .prev:hover,
+    .next:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  </style>
+
+  <style>
+    .grid-large {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .large-image {
+      position: relative;
+    }
+
+    .large-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 15px;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+    }
+
+    .overlay h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .overlay .view-all {
+      text-decoration: none;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+
+    /* Grid for the circular images */
+    .grid-small {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      width: 100%;
+      background-color: #f8e9d2;
+      border-radius: 25px;
+      margin-left: 1%;
+    }
+
+    .circular-image {
+      text-align: center;
+      margin: 10px;
+    }
+
+    .circular-image img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .circular-image p {
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    .grid-prod {
+      display: flex;
+    }
+    .cabeza2 {
+      padding: 10%;
+      display: none;
+      justify-content: center;
+
+      align-items: center;
+
+      height: 150px;
+      width: 100%;
+    }
+
+    /* Responsive design */
+    @media (max-width: 1000px) {
+      .grid-prod {
+        display: inline;
+        justify-content: center;
+
+        align-items: center;
+      }
+      .cabeza {
+        display: none;
+      }
+      .cabeza2 {
+        display: inline;
+      }
+
+      .grid-large img {
+        width: 110%;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 5%;
+      }
+
+      .grid-small {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .circular-image img {
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+
+  <body>
+    <div class="overlay" data-overlay></div>
+
+    <!--
+    - MODAL
+  -->
+
+    <div class="modal" data-modal>
+      <div class="modal-close-overlay" data-modal-overlay></div>
+      <div class="modal-content">
+        <button class="modal-close-btn" data-modal-close>
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+      </div>
+    </div>
+
+    <!--
+    - NOTIFICATION TOAST
+  -->
+
+    <div class="notification-toast" data-toast>
+      <button class="toast-close-btn" data-toast-close>
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+      <div class="toast-banner">
+        <img
+          src="./assets/images/products/category-4.jpg"
+          alt="Descripción de la bitcoins pagos"
+          width="80"
+          height="70"
+        />
+      </div>
+      <div class="toast-detail">
+        <p class="toast-message">¡Nuevo producto disponible!</p>
+        <p class="toast-title">bitcoins Premium pagos</p>
+        <p class="toast-meta">
+          <time datetime="PT2M">hace 2 minutos</time>
+        </p>
+      </div>
+    </div>
+
+    <!--
+    - HEADER
+  -->
+
+    <header>
+      <div class="header-top">
+        <div class="container advertising">
+          <ul class="header-social-container">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+          </ul>
+
+          <!-- <div
+            class="header-alert-news"
+            style="background-color: #e91022; color: white; padding: 10px"
+          >
+            <p>
+              <b>Obtén 12% de descuento en compras</b> superiores a Bs 269 con
+              el cupón MAECUIDA
+            </p>
+          </div> -->
+
+          <!-- TradingView Widget BEGIN -->
+          <div class="tradingview-widget-container">
+            <div class="tradingview-widget-container__widget"></div>
+            <div class="tradingview-widget-copyright">
+              <a
+                href="https://www.tradingview.com"
+                rel="noopener"
+                target="_blank"
+                ><span class="blue-text">Ticker Tape</span></a
+              >
+              by TradingView
+            </div>
+            <script
+              type="text/javascript"
+              src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+              async
+            >
+                {
+                "symbols"; [
+                  {
+                    "description": "",
+                    "proName": "COINBASE:BTCUSD"
+                  },
+                  {
+                    "description": "",
+                    "proName": "COINBASE:ETHUSD"
+                  },
+                  {
+                    "description": "",
+                    "proName": "BINANCE:IOTAUSD"
+                  }
+                ],
+                "colorTheme"; "dark",
+                "isTransparent"; false,
+                "displayMode"; "adaptive",
+                "locale"; "en"
+              }
+            </script>
+          </div>
+          <!-- TradingView Widget END -->
+
+          <div class="header-top-actions">
+            <select name="currency">
+              <option value="usd">USD &dollar;</option>
+              <option value="eur">EUR &euro;</option>
+            </select>
+            <select name="language">
+              <option value="en-US">English</option>
+              <option value="es-ES">Espa&ntilde;ol</option>
+              <option value="fr">Fran&ccedil;ais</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="header-main">
+        <div class="container">
+          <a href="#" class="header-logo">
+            <img
+              src="./assets/images/logo/logo.png"
+              alt="Bitcoinsapp"
+              width="40"
+              height="40"
+            />
+          </a>
+          <div class="header-search-container">
+            <input
+              style="width: 100%; border-radius: 10px"
+              type="search"
+              name="search"
+              class="search-field"
+              placeholder="Buscar producto....."
+            />
+            <button class="search-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+          </div>
+          <div class="header-user-actions">
+            <a href="{{ route('login') }}" class="action-btn">
+              <ion-icon name="person-outline"></ion-icon>
+            </a>
+            <button class="action-btn">
+              <ion-icon name="heart-outline"></ion-icon>
+              <span class="count">0</span>
+            </button>
+            <button class="action-btn">
+              <ion-icon name="bag-handle-outline"></ion-icon>
+              <span class="count">0</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <nav class="desktop-navigation-menu">
+        <div class="container">
+          <ul class="desktop-menu-category-list">
+            <li class="menu-category">
+              <a href="#" class="menu-title">Home</a>
+            </li>
+
+            <li class="menu-category">
+              <a href="#" class="menu-title">btc</a>
+
+              <div class="dropdown-panel">
+                <ul class="dropdown-panel-list">
+                  <li class="menu-title">
+                    <a href="#">bitcoins</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">usdt</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Latas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Snacks</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Dietas Especiales</a>
+                  </li>
+                </ul>
+
+                <ul class="dropdown-panel-list">
+                  <li class="menu-title">
+                    <a href="#">Juguetes</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Pelotas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Cuerdas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Peluche</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Interactivos</a>
+                  </li>
+                </ul>
+
+                <ul class="dropdown-panel-list">
+                  <li class="menu-title">
+                    <a href="#">Cuidado y Salud</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Champús</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Cepillos</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Vitaminas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Antipulgas</a>
+                  </li>
+                </ul>
+
+                <ul class="dropdown-panel-list">
+                  <li class="menu-title">
+                    <a href="#">Accesorios</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Collares</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Correas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Camas</a>
+                  </li>
+
+                  <li class="panel-list-item">
+                    <a href="#">Ropa</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+
+            <li class="menu-category">
+              <a href="#" class="menu-title">bitcoins</a>
+
+              <ul class="dropdown-list">
+                <li class="dropdown-item">
+                  <a href="#">bitcoins</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Arena</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Juguetes</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Rascadores</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Camas</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Transportadoras</a>
+                </li>
+
+                <li class="dropdown-item">
+                  <a href="#">Accesorios</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-category">
+              <a href="#" class="menu-title">qr</a>
+
+              <ul class="dropdown-list">
+                <li class="dropdown-item">
+                  <a href="#">qr</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <div class="mobile-bottom-navigation">
+        <button class="action-btn" data-mobile-menu-open-btn>
+          <ion-icon name="menu-outline"></ion-icon>
+        </button>
+
+        <a href="{{ route('login') }}" class="action-btn">
+          <ion-icon name="person-outline"></ion-icon>
+        </a>
+
+        <button class="action-btn">
+          <ion-icon name="home-outline"></ion-icon>
+        </button>
+
+        <button class="action-btn">
+          <ion-icon name="heart-outline"></ion-icon>
+
+          <span class="count">0</span>
+        </button>
+
+        <button class="action-btn" data-mobile-menu-open-btn>
+          <ion-icon name="grid-outline"></ion-icon>
+        </button>
+      </div>
+
+      <nav class="mobile-navigation-menu has-scrollbar" data-mobile-menu>
+        <div class="menu-top">
+          <h2 class="menu-title">Menu</h2>
+
+          <button class="menu-close-btn" data-mobile-menu-close-btn>
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+        </div>
+
+        <ul class="mobile-menu-category-list">
+          <li class="menu-category">
+            <a href="#" class="menu-title">Home</a>
+          </li>
+
+          <li class="menu-category">
+            <button class="accordion-menu" data-accordion-btn>
+              <p class="menu-title">bitcoins</p>
+
+              <div>
+                <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                <ion-icon name="remove-outline" class="remove-icon"></ion-icon>
+              </div>
+            </button>
+
+            <ul class="submenu-category-list" data-accordion>
+              <li class="submenu-category">
+                <a href="#" class="submenu-title">qr</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="menu-bottom">
+          <ul class="menu-category-list">
+            <li class="menu-category">
+              <button class="accordion-menu" data-accordion-btn>
+                <p class="menu-title">Language</p>
+
+                <ion-icon
+                  name="caret-back-outline"
+                  class="caret-back"
+                ></ion-icon>
+              </button>
+
+              <ul class="submenu-category-list" data-accordion>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">English</a>
+                </li>
+
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">Espa&ntilde;ol</a>
+                </li>
+
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">Fren&ccedil;h</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="menu-category">
+              <button class="accordion-menu" data-accordion-btn>
+                <p class="menu-title">Currency</p>
+                <ion-icon
+                  name="caret-back-outline"
+                  class="caret-back"
+                ></ion-icon>
+              </button>
+
+              <ul class="submenu-category-list" data-accordion>
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">USD &dollar;</a>
+                </li>
+
+                <li class="submenu-category">
+                  <a href="#" class="submenu-title">EUR &euro;</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+
+          <ul class="menu-social-container">
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-facebook"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-twitter"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-instagram"></ion-icon>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" class="social-link">
+                <ion-icon name="logo-linkedin"></ion-icon>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <!--
+    - MAIN
+  -->
+
+    <main>
+      <!--
+      - BANNER
+    -->
+
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const slides = document.querySelector(".slider");
+          const prevBtn = document.querySelector(".prev");
+          const nextBtn = document.querySelector(".next");
+          let index = 0;
+          const slideCount = slides.children.length;
+
+          function showSlide(i) {
+            index = (i + slideCount) % slideCount;
+            slides.style.transform = `translateX(${-index * 100}%)`;
+          }
+
+          function nextSlide() {
+            showSlide(index + 1);
+          }
+
+          function prevSlide() {
+            showSlide(index - 1);
+          }
+
+          nextBtn.addEventListener("click", nextSlide);
+          prevBtn.addEventListener("click", prevSlide);
+
+          setInterval(nextSlide, 3000); // Cambia la imagen cada 3 segundos
+        });
+      </script>
+
+      <!-- se añadio -->
+      <div
+        class="slider-container"
+        style="margin-right: 10%; margin-left: 12%; margin-top: 1%"
+      >
+        <div class="slider">
+          <div class="slides">
+            <a href="/" target="_blank"
+              ><img src="assets/images/banner/bg1.png" alt="Imagen 1"
+            /></a>
+            <a href="/" target="_blank"
+              ><img src="assets/images/banner/bg2.png" alt="Imagen 2"
+            /></a>
+            <a href="/" target="_blank"
+              ><img src="assets/images/banner/bg3.png" alt="Imagen 3"
+            /></a>
+          </div>
+          <button class="prev">&#10094;</button>
+          <button class="next">&#10095;</button>
+        </div>
+      </div>
+
+      <!-- se añadio -->
+
+      <!--
+      - CATEGORY
+    -->
+
+      <div class="category">
+        <div class="container">
+          <div class="category-item-container has-scrollbar">
+            <div class="category-item">
+              <div class="category-img-box">
+                <img
+                  src="./assets/images/icons/brand-1.jpg"
+                  alt="dog food"
+                  width="30"
+                />
+              </div>
+
+              <div class="category-content-box">
+                <div class="category-content-flex">
+                  <h3 class="category-item-title">Criptomonedas</h3>
+
+                  <p class="category-item-amount">(53)</p>
+                </div>
+
+                <a href="#" class="category-btn">Ver todo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--
+      - PRODUCT
+    -->
+
+      <div class="product-container">
+        <div class="container">
+          <!--
+          - SIDEBAR
+        -->
+
+          <div class="sidebar has-scrollbar" data-mobile-menu>
+            <div class="sidebar-category">
+              <div class="sidebar-top">
+                <h2 class="sidebar-title">Categoría</h2>
+
+                <button class="sidebar-close-btn" data-mobile-menu-close-btn>
+                  <ion-icon name="close-outline"></ion-icon>
+                </button>
+              </div>
+
+              <ul class="sidebar-menu-category-list">
+                <li class="sidebar-menu-category">
+                  <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                      <img
+                        src="./assets/images/icons/brand-1.jpg"
+                        alt="usdt"
+                        width="20"
+                        height="20"
+                        class="menu-title-img"
+                      />
+
+                      <p class="menu-title">usdt</p>
+                    </div>
+
+                    <div>
+                      <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                      <ion-icon
+                        name="remove-outline"
+                        class="remove-icon"
+                      ></ion-icon>
+                    </div>
+                  </button>
+
+                  <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                      <a href="#" class="sidebar-submenu-title">
+                        <p class="product-name">qr</p>
+                        <data value="300" class="stock" title="Available Stock"
+                          >300</data
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+
+                <li class="sidebar-menu-category">
+                  <button class="sidebar-accordion-menu" data-accordion-btn>
+                    <div class="menu-title-flex">
+                      <img
+                        src="./assets/images/icons/brand-2.jpg"
+                        alt="bitcoins"
+                        class="menu-title-img"
+                        width="20"
+                        height="20"
+                      />
+
+                      <p class="menu-title">bitcoins</p>
+                    </div>
+
+                    <div>
+                      <ion-icon name="add-outline" class="add-icon"></ion-icon>
+                      <ion-icon
+                        name="remove-outline"
+                        class="remove-icon"
+                      ></ion-icon>
+                    </div>
+                  </button>
+
+                  <ul class="sidebar-submenu-category-list" data-accordion>
+                    <li class="sidebar-submenu-category">
+                      <a href="#" class="sidebar-submenu-title">
+                        <p class="product-name">qr</p>
+                        <data value="45" class="stock" title="Available Stock"
+                          >45</data
+                        >
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+            <div class="product-showcase">
+              <h3 class="showcase-heading">Cripto</h3>
+
+              <div class="showcase-wrapper">
+                <div class="showcase-container">
+                  <div class="showcase">
+                    <a href="#" class="showcase-img-box">
+                      <img
+                        src="./assets/images/products/4.jpg"
+                        alt="bitcoinsusdt"
+                        class="showcase-img"
+                        width="75"
+                        height="75"
+                      />
+                    </a>
+
+                    <div class="showcase-content">
+                      <a href="#">
+                        <h4 class="showcase-title">bitcoins usdt</h4>
+                      </a>
+
+                      <a href="#" class="showcase-category">pagos</a>
+
+                      <div class="price-box">
+                        <p class="price">Bs.19.99</p>
+                        <del>Bs.24.99</del>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--
+            - PRODUCT GRID
+          -->
+
+          <!-- <div class="product-box">
+          </div> -->
+          <section class="explore-product">
+            <div class="container2">
+              <div class="section-header-wrapper">
+                <h2 class="h2 section-title">Explore Product</h2>
+
+                <button class="btn btn-primary">Explore</button>
+              </div>
+
+              <ul class="product-list">
+                <li class="product-item">
+                  <div class="product-card" tabindex="0">
+                    <figure class="product-banner">
+                      <img
+                        src="./assets/images/explore-product-1.jpg"
+                        alt="Dimond riding a blue body art"
+                      />
+
+                      <div class="product-actions">
+                        <button class="product-card-menu">
+                          <ion-icon name="ellipsis-horizontal"></ion-icon>
+                        </button>
+
+                        <button class="add-to-whishlist" data-whishlist-btn>
+                          <ion-icon name="heart"></ion-icon>
+                        </button>
+                      </div>
+
+                      <button class="place-bid-btn">Place bid</button>
+                    </figure>
+
+                    <div class="product-content">
+                      <a href="#" class="h4 product-title"
+                        >Dimond riding a blue body art</a
+                      >
+
+                      <div class="product-meta">
+                        <div class="product-author">
+                          <figure class="author-img">
+                            <img
+                              src="./assets/images/bidding-user.png"
+                              alt="Jack Reacher"
+                            />
+                          </figure>
+
+                          <div class="author-content">
+                            <h4 class="h5 author-title">Jack R</h4>
+
+                            <a href="#" class="author-username">@jackr</a>
+                          </div>
+                        </div>
+
+                        <div class="product-price">
+                          <data value="0.568">0.568ETH</data>
+
+                          <p class="label">Current Bid</p>
+                        </div>
+                      </div>
+
+                      <div class="product-footer">
+                        <p class="total-bid">12+ Place Bid.</p>
+
+                        <button class="tag">New</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="product-item">
+                  <div class="product-card" tabindex="0">
+                    <figure class="product-banner">
+                      <img
+                        src="./assets/images/explore-product-6.jpg"
+                        alt="Dimond riding a blue body art"
+                      />
+
+                      <div class="product-actions">
+                        <button class="product-card-menu">
+                          <ion-icon name="ellipsis-horizontal"></ion-icon>
+                        </button>
+
+                        <button class="add-to-whishlist" data-whishlist-btn>
+                          <ion-icon name="heart"></ion-icon>
+                        </button>
+                      </div>
+
+                      <button class="place-bid-btn">Place bid</button>
+                    </figure>
+
+                    <div class="product-content">
+                      <a href="#" class="h4 product-title"
+                        >Dimond riding a blue body art</a
+                      >
+
+                      <div class="product-meta">
+                        <div class="product-author">
+                          <figure class="author-img">
+                            <img
+                              src="./assets/images/bidding-user.png"
+                              alt="Jack Reacher"
+                            />
+                          </figure>
+
+                          <div class="author-content">
+                            <h4 class="h5 author-title">Jack R</h4>
+
+                            <a href="#" class="author-username">@jackr</a>
+                          </div>
+                        </div>
+
+                        <div class="product-price">
+                          <data value="0.568">0.568ETH</data>
+
+                          <p class="label">Current Bid</p>
+                        </div>
+                      </div>
+
+                      <div class="product-footer">
+                        <p class="total-bid">12+ Place Bid.</p>
+
+                        <button class="tag">New</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="product-item">
+                  <div class="product-card" tabindex="0">
+                    <figure class="product-banner">
+                      <img
+                        src="./assets/images/explore-product-7.jpg"
+                        alt="Dimond riding a blue body art"
+                      />
+
+                      <div class="product-actions">
+                        <button class="product-card-menu">
+                          <ion-icon name="ellipsis-horizontal"></ion-icon>
+                        </button>
+
+                        <button class="add-to-whishlist" data-whishlist-btn>
+                          <ion-icon name="heart"></ion-icon>
+                        </button>
+                      </div>
+
+                      <button class="place-bid-btn">Place bid</button>
+                    </figure>
+
+                    <div class="product-content">
+                      <a href="#" class="h4 product-title"
+                        >Dimond riding a blue body art</a
+                      >
+
+                      <div class="product-meta">
+                        <div class="product-author">
+                          <figure class="author-img">
+                            <img
+                              src="./assets/images/bidding-user.png"
+                              alt="Jack Reacher"
+                            />
+                          </figure>
+
+                          <div class="author-content">
+                            <h4 class="h5 author-title">Jack R</h4>
+
+                            <a href="#" class="author-username">@jackr</a>
+                          </div>
+                        </div>
+
+                        <div class="product-price">
+                          <data value="0.568">0.568ETH</data>
+
+                          <p class="label">Current Bid</p>
+                        </div>
+                      </div>
+
+                      <div class="product-footer">
+                        <p class="total-bid">12+ Place Bid.</p>
+
+                        <button class="tag">New</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+
+                <li class="product-item">
+                  <div class="product-card" tabindex="0">
+                    <figure class="product-banner">
+                      <img
+                        src="./assets/images/explore-product-8.jpg"
+                        alt="Dimond riding a blue body art"
+                      />
+
+                      <div class="product-actions">
+                        <button class="product-card-menu">
+                          <ion-icon name="ellipsis-horizontal"></ion-icon>
+                        </button>
+
+                        <button class="add-to-whishlist" data-whishlist-btn>
+                          <ion-icon name="heart"></ion-icon>
+                        </button>
+                      </div>
+
+                      <button class="place-bid-btn">Place bid</button>
+                    </figure>
+
+                    <div class="product-content">
+                      <a href="#" class="h4 product-title"
+                        >Dimond riding a blue body art</a
+                      >
+
+                      <div class="product-meta">
+                        <div class="product-author">
+                          <figure class="author-img">
+                            <img
+                              src="./assets/images/bidding-user.png"
+                              alt="Jack Reacher"
+                            />
+                          </figure>
+
+                          <div class="author-content">
+                            <h4 class="h5 author-title">Jack R</h4>
+
+                            <a href="#" class="author-username">@jackr</a>
+                          </div>
+                        </div>
+
+                        <div class="product-price">
+                          <data value="0.568">0.568ETH</data>
+
+                          <p class="label">Current Bid</p>
+                        </div>
+                      </div>
+
+                      <div class="product-footer">
+                        <p class="total-bid">12+ Place Bid.</p>
+
+                        <button class="tag">New</button>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <section class="top-seller">
+      <div class="container">
+        <h2 class="h2 top-seller-title">
+          Top seller in <span>1</span> day
+          <ion-icon name="chevron-down"></ion-icon>
+        </h2>
+
+        <ol class="top-seller-list">
+          <li class="top-seller-item">
+            <a href="#" class="top-seller-card">
+              <div class="card-number">01</div>
+
+              <figure class="card-avatar">
+                <img src="./assets/images/seller-01.png" alt="Brodband" />
+
+                <div class="avatar-badge">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </div>
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h5 card-title">Brodband</h3>
+
+                <data value="2500000">$2500,000</data>
+              </div>
+            </a>
+          </li>
+
+          <li class="top-seller-item">
+            <a href="#" class="top-seller-card">
+              <div class="card-number">02</div>
+
+              <figure class="card-avatar">
+                <img src="./assets/images/seller-02.png" alt="Alexander" />
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h5 card-title">Alexander</h3>
+
+                <data value="2500000">$2500,000</data>
+              </div>
+            </a>
+          </li>
+
+          <li class="top-seller-item">
+            <a href="#" class="top-seller-card">
+              <div class="card-number">03</div>
+
+              <figure class="card-avatar">
+                <img src="./assets/images/seller-03.png" alt="William Jeck" />
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h5 card-title">William Jeck</h3>
+
+                <data value="2500000">$2500,000</data>
+              </div>
+            </a>
+          </li>
+
+          <li class="top-seller-item">
+            <a href="#" class="top-seller-card">
+              <div class="card-number">04</div>
+
+              <figure class="card-avatar">
+                <img src="./assets/images/seller-04.png" alt="Henry Jhon" />
+
+                <div class="avatar-badge">
+                  <ion-icon name="checkmark-outline"></ion-icon>
+                </div>
+              </figure>
+
+              <div class="card-content">
+                <h3 class="h5 card-title">Henry Jhon</h3>
+
+                <data value="2500000">$2500,000</data>
+              </div>
+            </a>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="about">
+      <div class="container">
+        <h2 class="h2 about-title">Create and sell your NFTs</h2>
+
+        <ol class="about-list">
+          <li class="about-item">
+            <div class="about-card">
+              <div class="card-number">01</div>
+
+              <div class="card-icon">
+                <img
+                  src="./assets/images/single-create-sell-item-1.png"
+                  alt="wallet icon"
+                />
+              </div>
+
+              <h3 class="h3 about-card-title">Set up Your Wallet</h3>
+
+              <p class="about-card-text">
+                There are many variations of passagi Ipsum available but the
+                majorty have eration in some form, by injected
+              </p>
+            </div>
+          </li>
+
+          <li class="about-item">
+            <div class="about-card">
+              <div class="card-number">02</div>
+
+              <div class="card-icon">
+                <img
+                  src="./assets/images/single-create-sell-item-2.png"
+                  alt="collection icon"
+                />
+              </div>
+
+              <h3 class="h3 about-card-title">Create Your Collection</h3>
+
+              <p class="about-card-text">
+                There are many variations of passagi Ipsum available but the
+                majorty have eration in some form, by injected
+              </p>
+            </div>
+          </li>
+
+          <li class="about-item">
+            <div class="about-card">
+              <div class="card-number">03</div>
+
+              <div class="card-icon">
+                <img
+                  src="./assets/images/single-create-sell-item-3.png"
+                  alt="folder icon"
+                />
+              </div>
+
+              <h3 class="h3 about-card-title">Add Your NFT's</h3>
+
+              <p class="about-card-text">
+                There are many variations of passagi Ipsum available but the
+                majorty have eration in some form, by injected
+              </p>
+            </div>
+          </li>
+
+          <li class="about-item">
+            <div class="about-card">
+              <div class="card-number">04</div>
+
+              <div class="card-icon">
+                <img
+                  src="./assets/images/single-create-sell-item-4.png"
+                  alt="diamond icon"
+                />
+              </div>
+
+              <h3 class="h3 about-card-title">Sell Your NFT's</h3>
+
+              <p class="about-card-text">
+                There are many variations of passagi Ipsum available but the
+                majorty have eration in some form, by injected
+              </p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!--
+    - FOOTER
+  -->
+    <footer>
+      <div class="footer-top">
+        <div class="container">
+          <div class="footer-brand">
+            <a href="#" class="logo">
+              <img src="./assets/images/logo.png" alt="NAFT logo" />
+            </a>
+
+            <p class="footer-brand-text">
+              There are many variations of passages of but the majority have
+              suffered alterations cted humour, or randomsed words which htly
+              believable. If you are going
+            </p>
+
+            <h3 class="h4 social-title">Join the community</h3>
+
+            <ul class="social-list">
+              <li>
+                <a href="https://github.com/codewithsadee" class="social-link">
+                  <ion-icon name="logo-github"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a href="https://twitter.com/codewithsadee" class="social-link">
+                  <ion-icon name="logo-twitter"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://www.instagram.com/codewithsadee/"
+                  class="social-link"
+                >
+                  <ion-icon name="logo-instagram"></ion-icon>
+                </a>
+              </li>
+
+              <li>
+                <a
+                  href="https://www.youtube.com/c/codewithsadee"
+                  class="social-link"
+                >
+                  <ion-icon name="logo-youtube"></ion-icon>
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="footer-link-box">
+            <ul class="footer-list">
+              <li>
+                <h3 class="h3 footer-item-title">Marketplace</h3>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Gaming</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Product</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">All NFTs</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Social Network</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Domain Names</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Collectibles</a>
+              </li>
+            </ul>
+
+            <ul class="footer-list">
+              <li>
+                <h3 class="h3 footer-item-title">Explore</h3>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Featured Drops</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Live Auctions</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">All NFTs</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Collections</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Top Seller</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Items Details</a>
+              </li>
+            </ul>
+
+            <ul class="footer-list">
+              <li>
+                <h3 class="h3 footer-item-title">Supports</h3>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Settings & Privacy</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Help & Support</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Live Auctions</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Item Details</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">24/7 Supports</a>
+              </li>
+
+              <li class="footer-item">
+                <a href="#" class="footer-link">Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="container">
+          <p class="copyright">
+            &copy; 2022 <a href="/">@usdt</a> all rights reserved
+          </p>
+
+          <div class="footer-bottom-links">
+            <a href="#">Privacy Policy</a>
+
+            <a href="#">Terms & Conditions</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- 
+    - #BACK TO TOP
+  -->
+
+    <a href="#top" class="go-top" data-go-top>
+      <ion-icon name="arrow-up-outline"></ion-icon>
+    </a>
+
+    <a
+      href="#top"
+      class="back-top-btn"
+      aria-label="back to top"
+      data-back-top-btn
+    >
+      <ion-icon name="chevron-up" aria-hidden="true"></ion-icon>
+    </a>
+
+    <!--
+    - custom js link
+  -->
+    <script src="./assets/js/script.js"></script>
+
+    <!--
+    - ionicon link
+  -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+  </body>
+</html>
